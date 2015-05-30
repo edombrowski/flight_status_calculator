@@ -25,16 +25,16 @@
       <div class="panel-body">
         <dl>
           <dt>User</dt>
-          <dd><%= flight.user_id %></dd>
+          <dd><%= flight.user.email %></dd>
 
           <dt>Program</dt>
-          <dd><%= flight.program_id %></dd>
-
-          <dt>Destination airport</dt>
-          <dd><%= flight.destination_airport_id %></dd>
+          <dd><%= flight.program.program_name %></dd>
 
           <dt>Origin airport</dt>
-          <dd><%= flight.origin_airport_id %></dd>
+          <dd><%= flight.origin_airport.airport_code %></dd>
+
+          <dt>Destination airport</dt>
+          <dd><%= flight.destination_airport.airport_code %></dd>
 
           <dt>Miles flown</dt>
           <dd><%= flight.miles_flown %></dd>
