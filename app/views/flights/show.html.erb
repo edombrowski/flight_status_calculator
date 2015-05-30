@@ -1,0 +1,49 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Flight #<%= @flight.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>User</dt>
+              <dd><%= @flight.user_id %></dd>
+
+              <dt>Program</dt>
+              <dd><%= @flight.program_id %></dd>
+
+              <dt>Destination airport</dt>
+              <dd><%= @flight.destination_airport_id %></dd>
+
+              <dt>Origin airport</dt>
+              <dd><%= @flight.origin_airport_id %></dd>
+
+              <dt>Miles flown</dt>
+              <dd><%= @flight.miles_flown %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/flights" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/flights/<%= @flight.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_flight/<%= @flight.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

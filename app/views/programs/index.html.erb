@@ -1,0 +1,117 @@
+<div class="page-header">
+  <h1>
+    Programs
+    <a href="/programs/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+  </h1>
+</div>
+
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Programs (start typing)" class="form-control">
+  </div>
+</div>
+
+<hr>
+
+<div class="row isotope-container">
+<% @programs.each do |program| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Program #<%= program.id %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>T3 threshold</dt>
+          <dd><%= program.t3_threshold %></dd>
+
+          <dt>T3 name</dt>
+          <dd><%= program.t3_name %></dd>
+
+          <dt>T2 threshold</dt>
+          <dd><%= program.t2_threshold %></dd>
+
+          <dt>T2 name</dt>
+          <dd><%= program.t2_name %></dd>
+
+          <dt>T1 threshold</dt>
+          <dd><%= program.t1_threshold %></dd>
+
+          <dt>T1 name</dt>
+          <dd><%= program.t1_name %></dd>
+
+          <dt>Program type</dt>
+          <dd><%= program.program_type %></dd>
+
+          <dt>Program name</dt>
+          <dd><%= program.program_name %></dd>
+
+        </dl>
+        <div class="btn-group btn-group-justified">
+          <a href="/programs/<%= program.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+
+          <a href="/programs/<%= program.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_program/<%= program.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->

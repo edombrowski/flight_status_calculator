@@ -1,0 +1,120 @@
+<!-- Validation failure messages -->
+
+<% if @program.errors.any? %>
+  <% @program.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Program</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_program" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for t3_threshold -->
+          <div class="form-group">
+            <label for="t3_threshold" class="col-sm-2 control-label">
+              T3 threshold
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t3_threshold" name="t3_threshold" placeholder="T3 threshold" class="form-control" value="<%= @program.t3_threshold %>">
+            </div>
+          </div>
+
+          <!-- Label and input for t3_name -->
+          <div class="form-group">
+            <label for="t3_name" class="col-sm-2 control-label">
+              T3 name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t3_name" name="t3_name" placeholder="T3 name" class="form-control" value="<%= @program.t3_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for t2_threshold -->
+          <div class="form-group">
+            <label for="t2_threshold" class="col-sm-2 control-label">
+              T2 threshold
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t2_threshold" name="t2_threshold" placeholder="T2 threshold" class="form-control" value="<%= @program.t2_threshold %>">
+            </div>
+          </div>
+
+          <!-- Label and input for t2_name -->
+          <div class="form-group">
+            <label for="t2_name" class="col-sm-2 control-label">
+              T2 name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t2_name" name="t2_name" placeholder="T2 name" class="form-control" value="<%= @program.t2_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for t1_threshold -->
+          <div class="form-group">
+            <label for="t1_threshold" class="col-sm-2 control-label">
+              T1 threshold
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t1_threshold" name="t1_threshold" placeholder="T1 threshold" class="form-control" value="<%= @program.t1_threshold %>">
+            </div>
+          </div>
+
+          <!-- Label and input for t1_name -->
+          <div class="form-group">
+            <label for="t1_name" class="col-sm-2 control-label">
+              T1 name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="t1_name" name="t1_name" placeholder="T1 name" class="form-control" value="<%= @program.t1_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for program_type -->
+          <div class="form-group">
+            <label for="program_type" class="col-sm-2 control-label">
+              Program type
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="program_type" name="program_type" placeholder="Program type" class="form-control" value="<%= @program.program_type %>">
+            </div>
+          </div>
+
+          <!-- Label and input for program_name -->
+          <div class="form-group">
+            <label for="program_name" class="col-sm-2 control-label">
+              Program name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="program_name" name="program_name" placeholder="Program name" class="form-control" value="<%= @program.program_name %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Program
+              </button>
+              or
+              <a href="/programs">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
