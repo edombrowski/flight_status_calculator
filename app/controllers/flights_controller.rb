@@ -1,4 +1,14 @@
 class FlightsController < ApplicationController
+
+  before_action :ensure_current_user_is_owner, :only => [:update, :destroy, :show, :edit]
+
+  def ensure_current_user_is_owner
+    @flight = Flight.find(params[:id])
+    if @flight.user_id != current_user.id
+      redirect_to root_url, :alert => "Nice Try"
+    end
+  end
+
   def index
     @flights = Flight.where({ :user_id => current_user.id })
   end
