@@ -1,5 +1,7 @@
 class Flight < ActiveRecord::Base
 
+validates :origin_airport, :destination_airport, :program, :presence => true
+
   after_validation :update_miles_flown
   def update_miles_flown
     self.miles_flown = Haversine.distance(self.origin_airport.latitude, self.origin_airport.longitude, self.destination_airport.latitude, self.destination_airport.longitude).to_mi
