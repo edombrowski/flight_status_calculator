@@ -9,56 +9,97 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Flights (start typing)" class="form-control">
+    <h1>Progress</h1>
   </div>
 </div>
 
 <hr>
 
-<h1><%= @flights.sum(:miles_flown) %></h1>
-
-<div class="row isotope-container">
-<% @flights.each do |flight| %>
-  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Flight #<%= flight.id %></h3>
-      </div>
-      <div class="panel-body">
-        <dl>
-          <dt>User</dt>
-          <dd><%= flight.user.email %></dd>
-
-          <dt>Program</dt>
-          <dd><%= flight.program.program_name %></dd>
-
-          <dt>Origin airport</dt>
-          <dd><%= flight.origin_airport.airport_code %></dd>
-
-          <dt>Destination airport</dt>
-          <dd><%= flight.destination_airport.airport_code %></dd>
-
-          <dt>Miles flown</dt>
-          <dd><%= flight.miles_flown %></dd>
-
-        </dl>
-        <div class="btn-group btn-group-justified">
-          <a href="/flights/<%= flight.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-
-          <a href="/flights/<%= flight.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-
-          <a href="/delete_flight/<%= flight.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
+<div class="row">
+  <div class="col-xs-2">
+    <p><%= @program.t1_name %></p>
+  </div>
+  <div class="col-xs-8">
+    <div class="progress">
+      <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t1_completion %>%;">
+        <span><%= number_to_percentage(@t1_completion, precision:0) %> Complete</span>
       </div>
     </div>
   </div>
-<% end %>
+  <div class="col-xs-2">
+    <p><%= number_with_delimiter(@t1_remaining) %> Miles Remaining</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-2">
+    <p><%= @program.t2_name %></p>
+  </div>
+  <div class="col-xs-8">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t2_completion %>%;">
+        <span><%= number_to_percentage(@t2_completion, precision:0) %> Complete</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-2">
+    <p><%= number_with_delimiter(@t2_remaining) %> Miles Remaining</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-2"
+  <h1><%= @program.t3_name %></h1>
+</div>
+  <div class="col-xs-8">
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t3_completion %>%;">
+        <span><%= number_to_percentage(@t3_completion, precision:0) %> Complete</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-2">
+    <p><%= number_with_delimiter(@t3_remaining) %> Miles Remaining</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Flights</div>
+
+  <!-- Table -->
+  <table class="table">
+    <th>Flights</th>
+    <th>Program</th>
+    <th>Origin</th>
+    <th>Destination</th>
+    <th>Miles Flown</th>
+    <th>Actions</th>
+    <% @flights.each do |flight| %>
+    <tr>
+     <td><%= flight.id %></td>
+     <td><%= flight.program.program_name %></td>
+     <td><%= flight.origin_airport.airport_code %></td>
+     <td><%= flight.destination_airport.airport_code %></td>
+     <td><%= flight.miles_flown %></td>
+     <td>
+      <a href="/flights/<%= flight.id %>" class="btn btn-primary">
+        <i class="fa fa-search-plus"></i>
+      </a>
+
+      <a href="/flights/<%= flight.id %>/edit" class="btn btn-warning">
+        <i class="fa fa-edit"></i>
+      </a>
+
+      <a href="/delete_flight/<%= flight.id %>" class="btn btn-danger" rel="nofollow">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+  </tr>
+   <% end %>
+ </table>
 </div>
 
 <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->

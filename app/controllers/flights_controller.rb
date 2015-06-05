@@ -11,6 +11,14 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.where({ :user_id => current_user.id })
+    @program = Program.find(1)
+    @miles_flown = @flights.sum(:miles_flown)
+    @t1_remaining = (@program.t1_threshold - @miles_flown)
+    @t1_completion = @miles_flown/@program.t1_threshold.to_f*100
+    @t2_remaining = (@program.t2_threshold - @miles_flown)
+    @t2_completion = @miles_flown/@program.t2_threshold.to_f*100
+    @t3_remaining = (@program.t3_threshold - @miles_flown)
+    @t3_completion = @miles_flown/@program.t3_threshold.to_f*100
   end
 
   def show
@@ -28,6 +36,7 @@ class FlightsController < ApplicationController
     @flight.destination_airport_id = params[:destination_airport_id]
     @flight.origin_airport_id = params[:origin_airport_id]
     @flight.miles_flown = params[:miles_flown]
+    @flight.round_trip = params[:round_trip]
 
     if @flight.save
       redirect_to "/flights", :notice => "Flight created successfully."
