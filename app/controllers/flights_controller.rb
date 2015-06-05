@@ -57,6 +57,7 @@ class FlightsController < ApplicationController
     @flight.destination_airport_id = params[:destination_airport_id]
     @flight.origin_airport_id = params[:origin_airport_id]
     @flight.miles_flown = params[:miles_flown]
+    @flight.round_trip = params[:round_trip]
 
     if @flight.save
       redirect_to "/flights", :notice => "Flight updated successfully."
