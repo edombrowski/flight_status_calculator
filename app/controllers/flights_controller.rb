@@ -11,8 +11,9 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.where({ :user_id => current_user.id })
-    @program = Program.find(1)
-    @miles_flown = @flights.sum(:miles_flown)
+    @program = Program.find(current_user.program_id)
+    @eligible_flights = Flight.where({ :user_id => current_user.id, :program_id => current_user.program_id })
+    @miles_flown = @eligible_flights.sum(:miles_flown)
     @t1_remaining = (@program.t1_threshold - @miles_flown)
     @t1_completion = @miles_flown/@program.t1_threshold.to_f*100
     @t2_remaining = (@program.t2_threshold - @miles_flown)

@@ -71,7 +71,6 @@
 
   <!-- Table -->
   <table class="table">
-    <th>Flights</th>
     <th>Program</th>
     <th>Origin</th>
     <th>Destination</th>
@@ -79,7 +78,6 @@
     <th>Actions</th>
     <% @flights.each do |flight| %>
     <tr>
-     <td><%= flight.id %></td>
      <td><%= flight.program.program_name %></td>
      <td><%= flight.origin_airport.airport_code %></td>
      <td><%= flight.destination_airport.airport_code %></td>
