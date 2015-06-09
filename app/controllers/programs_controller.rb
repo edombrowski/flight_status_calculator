@@ -13,6 +13,8 @@ class ProgramsController < ApplicationController
 
   def create
     @program = Program.new
+    @program.t4_threshold = params[:t4_threshold]
+    @program.t4_name = params[:t4_name]
     @program.t3_threshold = params[:t3_threshold]
     @program.t3_name = params[:t3_name]
     @program.t2_threshold = params[:t2_threshold]
@@ -21,6 +23,7 @@ class ProgramsController < ApplicationController
     @program.t1_name = params[:t1_name]
     @program.program_type = params[:program_type]
     @program.program_name = params[:program_name]
+
 
     if @program.save
       redirect_to "/programs", :notice => "Program created successfully."
@@ -35,7 +38,8 @@ class ProgramsController < ApplicationController
 
   def update
     @program = Program.find(params[:id])
-
+    @program.t4_threshold = params[:t4_threshold]
+    @program.t4_name = params[:t4_name]
     @program.t3_threshold = params[:t3_threshold]
     @program.t3_name = params[:t3_name]
     @program.t2_threshold = params[:t2_threshold]

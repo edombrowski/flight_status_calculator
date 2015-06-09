@@ -21,13 +21,17 @@
   </div>
   <div class="col-xs-8">
     <div class="progress">
-      <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t1_completion %>%;">
+      <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; max-width: 100em; width: <%= @t1_completion %>%;">
         <span><%= number_to_percentage(@t1_completion, precision:0) %> Complete</span>
       </div>
     </div>
   </div>
   <div class="col-xs-2">
+  <% if @t1_remaining > 0 %>
     <p><%= number_with_delimiter(@t1_remaining) %> Miles Remaining</p>
+    <% else %>
+    <p>0 Miles Remaining</p>
+    <% end %>
   </div>
 </div>
 
@@ -37,15 +41,18 @@
   </div>
   <div class="col-xs-8">
     <div class="progress">
-      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t2_completion %>%;">
+      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; max-width: 100em; width: <%= @t2_completion %>%;">
         <span><%= number_to_percentage(@t2_completion, precision:0) %> Complete</span>
       </div>
     </div>
   </div>
   <div class="col-xs-2">
+    <% if @t2_remaining > 0 %>
     <p><%= number_with_delimiter(@t2_remaining) %> Miles Remaining</p>
+    <% else %>
+    <p>0 Miles Remaining</p>
+    <% end %>  </div>
   </div>
-</div>
 
 <div class="row">
   <div class="col-xs-2"
@@ -53,15 +60,43 @@
 </div>
   <div class="col-xs-8">
     <div class="progress">
-      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @t3_completion %>%;">
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; max-width: 100em; width: <%= @t3_completion %>%;">
         <span><%= number_to_percentage(@t3_completion, precision:0) %> Complete</span>
       </div>
     </div>
   </div>
   <div class="col-xs-2">
+    <% if @t3_remaining > 0 %>
     <p><%= number_with_delimiter(@t3_remaining) %> Miles Remaining</p>
+    <% else %>
+    <p>0 Miles Remaining</p>
+    <% end %>
   </div>
 </div>
+
+<% if @program.t4_name != nil %>
+<div class="row">
+  <div class="col-xs-2"
+  <h1><%= @program.t4_name %></h1>
+</div>
+<div class="col-xs-8">
+  <div class="<%= 'progress' if @program.t4_name != nil %>" >
+    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; max-width: 100em; width: <%= @t4_completion %>%;">
+      <span><%= number_to_percentage(@t4_completion, precision:0) %> Complete</span>
+    </div>
+  </div>
+</div>
+<div class="col-xs-2">
+  <% if @t4_remaining > 0 %>
+  <p><%= number_with_delimiter(@t4_remaining) %> Miles Remaining</p>
+  <% else %>
+  <p>0 Miles Remaining</p>
+  <% end %></div>
+</div>
+
+<% else %>
+
+<% end %>
 
 <hr>
 

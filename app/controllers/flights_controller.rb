@@ -20,6 +20,11 @@ class FlightsController < ApplicationController
     @t2_completion = @miles_flown/@program.t2_threshold.to_f*100
     @t3_remaining = (@program.t3_threshold - @miles_flown)
     @t3_completion = @miles_flown/@program.t3_threshold.to_f*100
+    if @program.t4_threshold != nil
+      @t4_remaining = (@program.t4_threshold - @miles_flown)
+      @t4_completion = @miles_flown/@program.t4_threshold.to_f*100
+    else
+    end
   end
 
   def show
