@@ -63,10 +63,15 @@
           <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
               <div class="checkbox">
-                <label><input type="checkbox" id="round_trip" name="round_trip" value="true">Round Trip Flight</label>
+                <label>
+                  <% if @flight.round_trip == true %>
+                  <input type="checkbox" id="round_trip" name="round_trip" value="true" checked>Round Trip Flight</label>
+                  <% else %>
+                  <input type="checkbox" id="round_trip" name="round_trip" value>Round Trip Flight</label>
+                  <% end  %>
+                </div>
               </div>
             </div>
-          </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

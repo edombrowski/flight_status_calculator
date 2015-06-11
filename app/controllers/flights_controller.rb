@@ -21,11 +21,9 @@ class FlightsController < ApplicationController
     @t3_remaining = (@program.t3_threshold - @miles_flown)
     @t3_completion = @miles_flown/@program.t3_threshold.to_f*100
     if @program.t4_threshold != nil
-      @hidden = "progress"
       @t4_remaining = (@program.t4_threshold - @miles_flown)
       @t4_completion = @miles_flown/@program.t4_threshold.to_f*100
     else
-      @hidden = "hidden"
       @t4_remaining = 0
     end
   end
@@ -56,11 +54,15 @@ class FlightsController < ApplicationController
 
   def edit
     @flight = Flight.find(params[:id])
+    if @flight.round_trip = "true"
+      @round_trip = "checked"
+    else
+      @round_trip = nil
+    end
   end
 
   def update
     @flight = Flight.find(params[:id])
-
     @flight.user_id = params[:user_id]
     @flight.program_id = params[:program_id]
     @flight.destination_airport_id = params[:destination_airport_id]
