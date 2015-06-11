@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'activeadmin', '~> 1.0.0.pre1'
+
 gem 'devise'
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 
 gem 'haversine', '~> 0.3.0'
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

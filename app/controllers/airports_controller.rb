@@ -1,4 +1,14 @@
 class AirportsController < ApplicationController
+
+before_action :ensure_current_user_is_admin, :only => [:update, :destroy, :show, :edit, :new]
+
+  def ensure_current_user_is_admin
+    @airport = current_user.id
+    if @airport != 4
+      redirect_to root_url, :alert => "Not Authorized"
+    end
+  end
+
   def index
     @airports = Airport.all
   end

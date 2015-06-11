@@ -1,54 +1,77 @@
 <style>
 
 .jumbotron {
-  margin-bottom: 40px !important;
-  height: 350px !important;
-  color: white !important;
-  text-shadow: black 0.1em 0.3em 0.3em !important;
-  background-image: url('jumbotron.png') no-repeat center center !important;
+background: url('<%= image_path('jumbotron_cropped.jpg') %>') no-repeat center center;
+background-size: cover !important;
+color: white !important;
+margin-bottom: 40px !important;
+min-height: 450px !important;
+width: 100%;
+height: 100%;
 }
 
 </style>
 
-<div class="container">
 <div class="jumbotron">
-  <h1>Howdy</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Sign up</h2>
+          </div>
+
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal", role: "form" }) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="form-group">
+            <%= f.label :email, class: "col-sm-3 control-label" %>
+              <div class="col-sm-9">
+                <%= f.email_field :email, autofocus: true, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, class: "col-sm-3 control-label" %>
+              <div class="col-sm-9">
+                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                <p class="help-block">
+                  <% if @validatable %>
+                  (<%= @minimum_password_length %> characters minimum)
+                  <% end %>
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, class: "col-sm-3 control-label" %>
+              <div class="col-sm-9">
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :loyalty_program, class: "col-sm-3 control-label" %>
+              <div class="col-sm-9">
+                <%= f.collection_select :program_id, Program.all, :id, :program_name, {prompt: "Select a Program"}, {class: "form-control"} %>
+              </div>
+            </div>
+
+              <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                  <%= f.submit "Sign up", class: "btn btn-success btn-block" %>
+                </div>
+              </div>
+
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
-  </div>
+</div>
 
-
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="form-group">
-    <b>Primary</b>
-    <%= f.label :program_id %>
-    <%= f.collection_select :program_id, Program.all, :id, :program_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

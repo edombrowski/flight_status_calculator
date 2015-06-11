@@ -21,9 +21,12 @@ class FlightsController < ApplicationController
     @t3_remaining = (@program.t3_threshold - @miles_flown)
     @t3_completion = @miles_flown/@program.t3_threshold.to_f*100
     if @program.t4_threshold != nil
+      @hidden = "progress"
       @t4_remaining = (@program.t4_threshold - @miles_flown)
       @t4_completion = @miles_flown/@program.t4_threshold.to_f*100
     else
+      @hidden = "hidden"
+      @t4_remaining = 0
     end
   end
 

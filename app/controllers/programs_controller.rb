@@ -1,4 +1,14 @@
 class ProgramsController < ApplicationController
+
+  before_action :ensure_current_user_is_admin, :only => [:update, :destroy, :show, :edit, :new]
+
+    def ensure_current_user_is_admin
+      @program = current_user.id
+      if @program != 4
+        redirect_to root_url, :alert => "Not Authorized"
+      end
+    end
+
   def index
     @programs = Program.all
   end
