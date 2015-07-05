@@ -8,9 +8,9 @@
 
 Program.create(t3_threshold: "100000", t3_name: "Executive Platinum", t2_threshold: "50000", t2_name: "Platinum", t1_threshold: "25000", t1_name: "Gold", program_type: "flight", program_name: "American Airlines AAdvantage", t4_name: "")
 
-Program.create(t3_threshold: "75000", t3_name: "Premier Platinum", t2_threshold: "50000", t2_name: "Premier Gold", t1_threshold: "25000", t1_name: "Premier Silver", program_type: "flight", program_name: "Unite MileagePlus", t4_name: "Premier 1K", t4_threshold: "100000")
+Program.create(t3_threshold: "75000", t3_name: "Premier Platinum", t2_threshold: "50000", t2_name: "Premier Gold", t1_threshold: "25000", t1_name: "Premier Silver", program_type: "flight", program_name: "United MileagePlus", t4_name: "Premier 1K", t4_threshold: "100000")
 
-Program.create(t3_threshold: "75000", t3_name: "Premier Platinum", t2_threshold: "50000", t2_name: "Premier Gold", t1_threshold: "25000", t1_name: "Premier Silver", program_type: "flight", program_name: "Unite MileagePlus", t4_name: "Premier 1K", t4_threshold: "100000")
+Program.create(t3_threshold: "75000", t3_name: "Platinum", t2_threshold: "50000", t2_name: "Gold", t1_threshold: "25000", t1_name: "Silver", program_type: "flight", program_name: "Delta SkyMiles", t4_name: "Diamond", t4_threshold: "125000")
 
 User.create(email: "erik@example.com", password: "12341234", program_id: "1")
 User.create(email: "katie@Examples.com", password: "12341234", program_id: "1")
